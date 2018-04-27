@@ -22,11 +22,8 @@ public class FileReader {
 
 	private static Resource resource = new ClassPathResource("user.properties");
 	
-	public static void forceLoad() {
-		
-	}
-	
 	public static void manualLoad() {
+		LoggerUtility.log("Enter manualLoad");
 		Properties prop = new Properties();
 		try (InputStream input = resource.getInputStream();) {
 
@@ -41,6 +38,9 @@ public class FileReader {
 			UserBean user1 = new UserBean(name1, pass1);
 			UserBean user2 = new UserBean(name2, pass2);
 
+			LoggerUtility.log("User 1" + user1);
+			LoggerUtility.log("User 2" + user2);
+			
 			DAOHandler.addUser(user1);
 			DAOHandler.addUser(user2);
 
@@ -49,11 +49,8 @@ public class FileReader {
 		} catch (CatalogException ex) {
 			ex.printStackTrace();
 		}
-
+		LoggerUtility.log("Exit manualLoad");
 	}
 	
-	static {
-		manualLoad();
-	}
 
 }

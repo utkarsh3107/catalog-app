@@ -25,7 +25,7 @@ public class DAOHandlerTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		FileReader.forceLoad();
+		FileReader.manualLoad();
 	}
 	
 	@After
@@ -58,7 +58,7 @@ public class DAOHandlerTest {
 		ProductBean pBean = ValueInitializer.getSingleProduct();
 		UserBean uBean = ValueInitializer.getValidUser();
 		
-		DAOHandler.addUpdateInventoryForUser(uBean, pBean);
+		DAOHandler.addInventoryForUser(uBean, pBean);
 		
 		assertEquals(DAOHandler.getInventorySizeForUser(uBean), 1L);
 		
@@ -68,7 +68,7 @@ public class DAOHandlerTest {
 	public void removeInvetory() throws CatalogException{
 		ProductBean pBean = ValueInitializer.getSingleProduct();
 		UserBean uBean = ValueInitializer.getValidUser();
-		DAOHandler.addUpdateInventoryForUser(uBean, pBean);
+		DAOHandler.addInventoryForUser(uBean, pBean);
 		assertEquals(1L , DAOHandler.getInventorySizeForUser(uBean));
 		
 		DAOHandler.removeInventory(uBean, pBean.getProductId());
@@ -81,7 +81,7 @@ public class DAOHandlerTest {
 	public void retrieveInvetory() throws CatalogException{
 		ProductBean pBean = ValueInitializer.getSingleProduct();
 		UserBean uBean = ValueInitializer.getValidUser();
-		DAOHandler.addUpdateInventoryForUser(uBean, pBean);
+		DAOHandler.addInventoryForUser(uBean, pBean);
 		assertEquals(DAOHandler.getInventorySizeForUser(uBean), 1L);
 		
 		ProductBean expectedBean = DAOHandler.retriveInventory(uBean, pBean.getProductId());
@@ -94,7 +94,7 @@ public class DAOHandlerTest {
 	public void updateInventory() throws CatalogException{
 		ProductBean pBean = ValueInitializer.getSingleProduct();
 		UserBean uBean = ValueInitializer.getValidUser();
-		DAOHandler.addUpdateInventoryForUser(uBean, pBean);
+		DAOHandler.addInventoryForUser(uBean, pBean);
 		assertEquals(DAOHandler.getInventorySizeForUser(uBean), 1L);
 		
 		pBean.setProductDesc("new Desc");
