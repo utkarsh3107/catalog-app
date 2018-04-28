@@ -3,6 +3,9 @@
  */
 package com.interview.catalog.controller;
 
+import java.util.Arrays;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,14 +29,14 @@ import com.interview.catalog.exception.CatalogException;
 @Controller
 public class ProductHandlerController {
 
-	@RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public ModelAndView getProducts(@SessionAttribute("result") String name,HttpServletRequest request, HttpServletResponse response) throws CatalogException{
 		UserBean user = new UserBean(name, "");
 		ProductBean bean = new ProductBean();
-		bean.setProductId(request.getParameter("productId"));
-		bean.setProductName(request.getParameter("productName"));
-		bean.setProductDesc(request.getParameter("productDesc"));
-		
+		bean.setProductId(UUID.randomUUID().toString());
+		bean.setProductName(request.getParameter("pname"));
+		bean.setProductDesc(request.getParameter("pdesc"));
+		bean.setRelatedProd(Arrays.asList(request.getParameter("relatedproc")));
 		DAOHandler.addInventoryForUser(user, bean);
 		return new ModelAndView("home", "productList", DAOHandler.getAllProducts(user));
 	}
@@ -52,7 +55,9 @@ public class ProductHandlerController {
 		UserBean user = new UserBean(name, "");
 		
 		ProductBean bean = DAOHandler.retriveInventory(user, id);
-		return new ModelAndView("editProduct", "command", bean);
+		ModelAndView modView = new ModelAndView("editProduct", "command", bean);
+		modView.addObject("prodID", id);
+		return modView;
 	}
 	
 	@RequestMapping(value="/updateProduct",method = RequestMethod.POST)

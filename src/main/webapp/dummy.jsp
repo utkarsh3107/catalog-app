@@ -7,12 +7,16 @@
 <title>Home Page</title>
 <link href="${pageContext.request.contextPath}/resources/css/OM.css"
 	rel="stylesheet" />
-
+	
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
-	rel="stylesheet" />
-
+	rel="stylesheet" />	
+	
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<!-- Styles -->
+
+
+<!-- JavaScript Code -->
 <script>
 		$(document).ready(function() {
 
@@ -43,18 +47,18 @@
 				if (!error_free){
 					event.preventDefault(); 
 				}
-			});			
+			});
+			
+			
+			
 		});
 	</script>
-
 </head>
 <body>
-
 	<form id="login" method="post" action="login">
-
+	
 		<div class="container3">
 			<div class="loginForm ">
-				<h3 align="center">Login Page</h3>
 				<div class="selectWidth95">
 					<label for="login_name">Name:</label> <input type="text"
 						id="login_name" name="name"></input><br> <span class="error">This
@@ -62,9 +66,9 @@
 				</div>
 				<div class="spacer1"></div>
 				<div class="selectWidth95">
-					<label for="login_password">Password:</label> <input
-						type="password" id="login_password" name="password"></input><br>
-					<span class="error">This field is required</span>
+					<label for="login_password">Password:</label> <input type="password"
+						id="login_password" name="password"></input><br> <span class="error">This
+						field is required</span>
 				</div>
 				<div id="login_submit" class="container alignCenter">
 					<button class="loginButtonblue" type="submit">Submit</button>
@@ -74,3 +78,7 @@
 	</form>
 </body>
 </html>
+
+
+
+

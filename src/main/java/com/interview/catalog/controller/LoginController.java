@@ -30,8 +30,8 @@ public class LoginController {
 	
 	@RequestMapping("/login")
 	public ModelAndView hello(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-		String name = request.getParameter("uname");
-		String pass = request.getParameter("pass");
+		String name = request.getParameter("name");
+		String pass = request.getParameter("password");
 		LoggerUtility.log("Enter isValidUser");
 		
 		ModelAndView modView = new ModelAndView();
