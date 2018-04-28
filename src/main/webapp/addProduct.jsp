@@ -66,6 +66,23 @@
 				event.preventDefault();
 			}
 		});
+	
+/* 		$('#ajaxSubmit').click(function(){
+			var form = $('#add');
+			alert("In");
+			
+			 $.ajax({
+		           type: form.attr('method'),
+		           url: form.attr('action'),
+		           data: form.serialize(), // serializes the form's elements.
+		           success: function(data)
+		           {
+		        	   
+		               alert(data); // show response from the php script.
+		           }
+		         });
+		}); */
+	
 	});
 </script>
 
@@ -119,6 +136,7 @@
 					<div class="spacer2"></div>
 					<div id="add_submit" class="floatLeft selectWidth15">
 						<button type="submit" class="blueButton">Add Product</button>
+						<!-- <button type="button" class="blueButton" id="ajaxSubmit">Ajax Add Product</button> -->
 					</div>
 					<div class="clear"></div>
 				</div>

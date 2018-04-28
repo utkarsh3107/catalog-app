@@ -4,6 +4,7 @@
 package com.interview.catalog.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,8 +48,17 @@ public class ProductHandlerController {
 		UserBean user = new UserBean(name, "");
 		
 		DAOHandler.removeInventory(user, id);
+		//return new ModelAndView("home");  
 		return new ModelAndView("redirect:/reloadHome");  
-		//return new ModelAndView("home", "productList", DAOHandler.getAllProducts(user));
+	}
+	
+	@RequestMapping(value = "/ajaxDel/{id}", method = RequestMethod.GET)
+	public  @ResponseBody List<ProductBean> removeAjaxProduct(@SessionAttribute("result") String name,@PathVariable String id) throws CatalogException{
+		UserBean user = new UserBean(name, "");
+		
+		DAOHandler.removeInventory(user, id);
+		//return new ModelAndView("home");  
+		return DAOHandler.getAllProducts(user);
 	}
 	
 	@RequestMapping(value = "/productEdit/{id}", method = RequestMethod.GET)
@@ -65,12 +76,19 @@ public class ProductHandlerController {
 		UserBean user = new UserBean(name, "");
 		
 		DAOHandler.updateInventoryForUser(user, product);
-		return new ModelAndView("redirect:/reloadHome");  
+		//return new ModelAndView("redirect:/reloadHome");  
+		return new ModelAndView("home"); 
 	}
 	
     @RequestMapping("/reloadHome")  
     public ModelAndView viewemp(@SessionAttribute("result") String name) throws CatalogException{  
     	UserBean user = new UserBean(name, "");
         return new ModelAndView("home", "productList", DAOHandler.getAllProducts(user));
+    }
+    
+    @RequestMapping("/reloadProdHome")  
+    public @ResponseBody List<ProductBean> producthome(@SessionAttribute("result") String name) throws CatalogException{  
+    	UserBean user = new UserBean(name, "");
+    	return DAOHandler.getAllProducts(user);
     }
 }
