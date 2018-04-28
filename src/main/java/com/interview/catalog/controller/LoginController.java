@@ -36,6 +36,7 @@ public class LoginController {
 		
 		ModelAndView modView = new ModelAndView();
 		modView.setViewName("login");
+		model.put("errMsg", "Invalid User!");
 		try {
 			if(service.isValidUser(name, pass)) {
 				model.put("result", name);

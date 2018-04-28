@@ -38,6 +38,7 @@
 
 	<div class="container">
 		<h3 align="left" class="boldText padding10">Hello ${result}</h3>
+		<div class="alignCenter">${msg}</div>
 		<div class="orangeText boldText padding10">Home Page: Product
 			Management</div>
 		<div class="headerBarblock">

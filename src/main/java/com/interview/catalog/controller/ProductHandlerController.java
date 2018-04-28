@@ -40,7 +40,11 @@ public class ProductHandlerController {
 		bean.setProductDesc(request.getParameter("pdesc"));
 		bean.setRelatedProd(Arrays.asList(request.getParameter("relatedproc")));
 		DAOHandler.addInventoryForUser(user, bean);
-		return new ModelAndView("home", "productList", DAOHandler.getAllProducts(user));
+		
+		ModelAndView modView = new ModelAndView("home");
+		modView.setViewName("home");
+		modView.addObject("msg", "Data Added Successfully!");
+		return modView;
 	}
 	
 	@RequestMapping(value = "/productDelete/{id}", method = RequestMethod.GET)
@@ -48,19 +52,13 @@ public class ProductHandlerController {
 		UserBean user = new UserBean(name, "");
 		
 		DAOHandler.removeInventory(user, id);
+		ModelAndView modView = new ModelAndView();
+		modView.setViewName("redirect:/reloadHome");
+		modView.addObject("msg", "Data Removed Successfully!");
 		//return new ModelAndView("home");  
-		return new ModelAndView("redirect:/reloadHome");  
+		return modView;  
 	}
-	
-	@RequestMapping(value = "/ajaxDel/{id}", method = RequestMethod.GET)
-	public  @ResponseBody List<ProductBean> removeAjaxProduct(@SessionAttribute("result") String name,@PathVariable String id) throws CatalogException{
-		UserBean user = new UserBean(name, "");
-		
-		DAOHandler.removeInventory(user, id);
-		//return new ModelAndView("home");  
-		return DAOHandler.getAllProducts(user);
-	}
-	
+
 	@RequestMapping(value = "/productEdit/{id}", method = RequestMethod.GET)
 	public ModelAndView updateProduct(@SessionAttribute("result") String name,@PathVariable String id) throws CatalogException{
 		UserBean user = new UserBean(name, "");
@@ -76,8 +74,13 @@ public class ProductHandlerController {
 		UserBean user = new UserBean(name, "");
 		
 		DAOHandler.updateInventoryForUser(user, product);
+		ModelAndView modView = new ModelAndView();
+		modView.setViewName("home");
+		modView.addObject("msg", "Data Updated Successfully!");
+		//return new ModelAndView("home");  
+		
 		//return new ModelAndView("redirect:/reloadHome");  
-		return new ModelAndView("home"); 
+		return modView; 
 	}
 	
     @RequestMapping("/reloadHome")  

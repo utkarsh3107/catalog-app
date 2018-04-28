@@ -1,4 +1,5 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,6 +11,12 @@
 
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" />
+
+<style>
+.errorMsg {
+	color: #ff0000;
+}
+</style>
 
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
@@ -50,6 +57,8 @@
 </head>
 <body>
 
+
+
 	<form id="login" method="post" action="login">
 
 		<div class="container3">
@@ -66,11 +75,14 @@
 						type="password" id="login_password" name="password"></input><br>
 					<span class="error">This field is required</span>
 				</div>
+				<div class="errorMsg alignCenter">${errMsg}</div>
 				<div id="login_submit" class="container alignCenter">
 					<button class="loginButtonblue" type="submit">Submit</button>
 				</div>
+				
 			</div>
 		</div>
 	</form>
+
 </body>
 </html>
