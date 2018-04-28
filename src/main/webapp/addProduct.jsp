@@ -85,14 +85,41 @@
 	
 	});
 </script>
+<style>
+.homeButton {
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 3px;
+	border: none;
+	background-image: -moz-linear-gradient(top, #0ba4e0, #067ab4, #064a84);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0ba4e0),
+		color-stop(.5, #067ab4), color-stop(1, #064a84));
+	background-image: -ms-linear-gradient(top, #0ba4e0 0, #067ab4 50%, #064a84 100%);
+	-webkit-box-shadow: 1px 2px 4px #333;
+	-moz-box-shadow: 1px 2px 4px #333;
+	box-shadow: 1px 2px 4px #333;
+	background: blue;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 -1px 1px #c0c0c0;
+	cursor: pointer;
+	font-weight: 100;
+	text-decoration: none
+}
+</style>
 
 </head>
 <body>
 	<div class="container">
-		<div class="orangeText boldText padding10">Add New Product: Product
-			Management</div>
+		<div class="orangeText boldText padding10">Add New Product:
+			Product Management</div>
 		<div class="headerBarblock">
 			<div class="floatLeft paddingLeft10">Added Items</div>
+			<div class="floatRight">
+				<form id="main" method="get" action="reloadHome">
+					<input type="submit" name="submit" class="homeButton" value="Home Page"/>
+				</form>
+			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="headercontentblock1">

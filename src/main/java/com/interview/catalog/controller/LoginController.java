@@ -6,6 +6,7 @@ package com.interview.catalog.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +27,15 @@ import com.interview.catalog.utils.LoggerUtility;
 @SessionAttributes("result")
 public class LoginController {
 
+	private static final Logger logger = Logger.getLogger(LoginController.class);
+	
 	LoginService service = new LoginService();
 	
 	@RequestMapping("/login")
 	public ModelAndView hello(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 		String name = request.getParameter("name");
 		String pass = request.getParameter("password");
-		LoggerUtility.log("Enter isValidUser");
+		LoggerUtility.logDebug(logger, "Enter isValidUser");
 		
 		ModelAndView modView = new ModelAndView();
 		modView.setViewName("login");
@@ -46,6 +49,17 @@ public class LoginController {
 			ex.printStackTrace();
 		}
 
+		return modView;
+	}
+	
+	@RequestMapping("/logout")
+	public ModelAndView logout(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		model.put("result", null);
+		LoggerUtility.logDebug(logger, "Enter logout");
+		
+		ModelAndView modView = new ModelAndView();
+		modView.setViewName("login");
+		LoggerUtility.logDebug(logger, "Exit logout");
 		return modView;
 	}
 }

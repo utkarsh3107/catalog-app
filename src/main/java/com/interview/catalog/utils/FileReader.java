@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import com.interview.catalog.bean.UserBean;
+import com.interview.catalog.controller.ProductHandlerController;
 import com.interview.catalog.dao.DAOHandler;
 import com.interview.catalog.exception.CatalogException;
 
@@ -20,10 +22,12 @@ import com.interview.catalog.exception.CatalogException;
  */
 public class FileReader {
 
+	private static final Logger logger = Logger.getLogger(FileReader.class);
+	
 	private static Resource resource = new ClassPathResource("user.properties");
 	
 	public static void manualLoad() {
-		LoggerUtility.log("Enter manualLoad");
+		LoggerUtility.logDebug(logger, "Enter manualLoad");
 		Properties prop = new Properties();
 		try (InputStream input = resource.getInputStream();) {
 
@@ -38,8 +42,8 @@ public class FileReader {
 			UserBean user1 = new UserBean(name1, pass1);
 			UserBean user2 = new UserBean(name2, pass2);
 
-			LoggerUtility.log("User 1" + user1);
-			LoggerUtility.log("User 2" + user2);
+			LoggerUtility.logDebug(logger,"User 1" + user1);
+			LoggerUtility.logDebug(logger, "User 2" + user2);
 			
 			DAOHandler.addUser(user1);
 			DAOHandler.addUser(user2);
@@ -49,7 +53,7 @@ public class FileReader {
 		} catch (CatalogException ex) {
 			ex.printStackTrace();
 		}
-		LoggerUtility.log("Exit manualLoad");
+		LoggerUtility.logDebug(logger,"Exit manualLoad");
 	}
 	
 

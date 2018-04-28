@@ -22,7 +22,6 @@
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script>
 		$(document).ready(function() {
-
 				$('#login_name').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();

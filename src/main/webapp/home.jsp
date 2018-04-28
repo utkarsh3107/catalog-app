@@ -17,6 +17,10 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.tmpl.js"></script>
 
+
+<link href="${pageContext.request.contextPath}/resources/css/style.css"
+	rel="stylesheet" />
+
 <script>
 	
 	function reloadPage(){
@@ -33,14 +37,45 @@
 
 </script>
 
+<style>
+.logoutButton {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 2px;
+	border: none;
+	background-image: -moz-linear-gradient(top, #0ba4e0, #067ab4, #064a84);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0ba4e0),
+		color-stop(.5, #067ab4), color-stop(1, #064a84));
+	background-image: -ms-linear-gradient(top, #0ba4e0 0, #067ab4 50%, #064a84 100%);
+	-webkit-box-shadow: 1px 2px 4px #333;
+	-moz-box-shadow: 1px 2px 4px #333;
+	box-shadow: 1px 2px 4px #333;
+		background: #ff8080;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 -1px 1px #c0c0c0;
+	cursor: pointer;
+	font-weight: 100;
+	text-decoration: none
+	
+}
+</style>
+
 </head>
 <body onload="reloadPage()">
+
+
 
 	<div class="container">
 		<h3 align="left" class="boldText padding10">Hello ${result}</h3>
 		<div class="alignCenter">${msg}</div>
 		<div class="orangeText boldText padding10">Home Page: Product
 			Management</div>
+		<div class = "floatRight">
+			<form action="logout" method="get">
+				<input type="submit" class="logoutButton" value="Logout"></input>
+			</form>
+		</div>	
 		<div class="headerBarblock">
 			<div class="floatLeft paddingLeft10">Product Inventory</div>
 			<div class="clear"></div>
