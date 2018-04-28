@@ -4,6 +4,8 @@
 package com.interview.catalog.bean;
 
 /**
+ * User Bean to display user information
+ * 
  * @author lenov
  *
  */

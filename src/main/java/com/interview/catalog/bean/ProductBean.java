@@ -6,7 +6,7 @@ package com.interview.catalog.bean;
 import java.util.List;
 
 /**
- * @author lenov
+ * Product Bean to display product information
  *
  */
 public class ProductBean {
