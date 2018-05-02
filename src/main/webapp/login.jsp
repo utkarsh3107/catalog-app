@@ -106,7 +106,7 @@
 			<div><span class="error">This field is required</span></div>
         </div>
         <div class="form-group errorMsg">
-            <h4 class="text-center alert alert-danger">${errMsg}</h4>     
+            <h4 class="text-center">${errMsg}</h4>     
         </div>  
         <div id="login_submit" class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
