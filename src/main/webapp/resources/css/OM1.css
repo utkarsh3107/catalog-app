@@ -250,7 +250,6 @@ input[type=submit]:disabled {
 	box-shadow: 1px 2px 4px #333
 }
 
-
 .blueButton:focus {
 	outline: 0;
 	border: none

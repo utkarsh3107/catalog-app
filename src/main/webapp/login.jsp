@@ -6,7 +6,8 @@
 <html>
 <head>
 <title>Home Page</title>
-<link href="${pageContext.request.contextPath}/resources/css/OM.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet" />
 
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
@@ -16,10 +17,47 @@
 .errorMsg {
 	color: #ff0000;
 }
+.login-form {
+	width: 340px;
+	margin: 50px auto;
+}
+
+.login-form form {
+	margin-bottom: 15px;
+	background: #f7f7f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+
+.login-form h2 {
+	margin: 0 0 15px;
+}
+
+.form-control, .btn {
+	min-height: 38px;
+	border-radius: 2px;
+}
+
+.btn {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.error {
+	display: none;
+}
+
+.error_show {
+	color: red;
+}
+
 </style>
 
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 <script>
 		$(document).ready(function() {
 				$('#login_name').on('input', function() {
@@ -56,32 +94,25 @@
 </head>
 <body>
 
-
-
+<div class="login-form">
 	<form id="login" method="post" action="login">
-
-		<div class="container3">
-			<div class="loginForm ">
-				<h3 align="center">Login Page</h3>
-				<div class="selectWidth95">
-					<label for="login_name">Name:</label> <input type="text"
-						id="login_name" name="name"></input><br> <span class="error">This
-						field is required</span>
-				</div>
-				<div class="spacer1"></div>
-				<div class="selectWidth95">
-					<label for="login_password">Password:</label> <input
-						type="password" id="login_password" name="password"></input><br>
-					<span class="error">This field is required</span>
-				</div>
-				<div class="errorMsg alignCenter">${errMsg}</div>
-				<div id="login_submit" class="container alignCenter">
-					<button class="loginButtonblue" type="submit">Submit</button>
-				</div>
-				
-			</div>
-		</div>
-	</form>
-
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">        
+            <input type="text" id="login_name" name="name" class="form-control" placeholder="Username" />
+            <div><span class="error">This field is required</span></div>
+        </div>
+        <div class="form-group">
+            <input id="login_password" type="password" name="password" class="form-control" placeholder="Password">
+			<div><span class="error">This field is required</span></div>
+        </div>
+        <div class="form-group errorMsg">
+            <h4 class="text-center alert alert-danger">${errMsg}</h4>     
+        </div>  
+        <div id="login_submit" class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>    
+    </form>
+<!--     <p class="text-center"><a href="#">Create an Account</a></p> -->
+</div>
 </body>
 </html>

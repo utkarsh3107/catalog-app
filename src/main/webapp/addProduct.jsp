@@ -6,15 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Product</title>
 
-<link href="${pageContext.request.contextPath}/resources/css/OM.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet" />
 
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" />
-
+	
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.tmpl.js"></script>
+<style>
+
+.display-form {
+	width: 900px;
+	margin: 50px auto;
+}
+
+.error {
+	display: none;
+}
+
+.error_show {
+	color: red;
+}
+
+</style>
 <script>
 	$(document).ready(function() {
 
@@ -67,114 +89,78 @@
 			}
 		});
 	
-/* 		$('#ajaxSubmit').click(function(){
-			var form = $('#add');
-			alert("In");
-			
-			 $.ajax({
-		           type: form.attr('method'),
-		           url: form.attr('action'),
-		           data: form.serialize(), // serializes the form's elements.
-		           success: function(data)
-		           {
-		        	   
-		               alert(data); // show response from the php script.
-		           }
-		         });
-		}); */
-	
 	});
 </script>
-<style>
-.homeButton {
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 3px;
-	border: none;
-	background-image: -moz-linear-gradient(top, #0ba4e0, #067ab4, #064a84);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0ba4e0),
-		color-stop(.5, #067ab4), color-stop(1, #064a84));
-	background-image: -ms-linear-gradient(top, #0ba4e0 0, #067ab4 50%, #064a84 100%);
-	-webkit-box-shadow: 1px 2px 4px #333;
-	-moz-box-shadow: 1px 2px 4px #333;
-	box-shadow: 1px 2px 4px #333;
-	background: blue;
-	text-align: center;
-	color: #fff;
-	text-shadow: 0 -1px 1px #c0c0c0;
-	cursor: pointer;
-	font-weight: 100;
-	text-decoration: none
-}
-</style>
 
 </head>
 <body>
-	<div class="container">
-		<div class="orangeText boldText padding10">Add New Product:
-			Product Management</div>
-		<div class="headerBarblock">
-			<div class="floatLeft paddingLeft10">Added Items</div>
-			<div class="floatRight">
-				<form id="main" method="get" action="reloadHome">
-					<input type="submit" name="submit" class="homeButton" value="Home Page"/>
-				</form>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="headercontentblock1">
-			<form id="add" method="post" action="addProduct">
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20  blueText">
-						<label class="selectWidth70" for="add_pname">Product Name</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<input type="text" id="add_pname" name="pname"></input> <span
-							class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20  blueText">
-						<label class="selectWidth70" for="add_pdesc">Product
-							Description</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<input type="text" id="add_pdesc" name="pdesc"></input> <span
-							class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20 blueText">
-						<label class="selectWidth70" for="add_relatedproc">Related
-							Products</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<input type="text" id="add_relatedproc" name="relatedproc"></input>
-						<span class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
 
-				<div class="clear"></div>
-				<div class="omblueLine"></div>
-				<div class="container1">
-					<div class="spacer2"></div>
-					<div id="add_submit" class="floatLeft selectWidth15">
-						<button type="submit" class="blueButton">Add Product</button>
-						<!-- <button type="button" class="blueButton" id="ajaxSubmit">Ajax Add Product</button> -->
+	<div class="display-form">
+		<h4 class="text-left font-weight-bold">Hello ${result}</h4>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-left font-weight-bold">Add New Product:
+							Product Management</h3>
 					</div>
-					<div class="clear"></div>
+					<div class="col-md-6">
+						<form id="main" class="pull-right" action="reloadHome"
+							method="get">
+							<input type="submit" class="btn btn-default" value="Home Page"></input>
+						</form>
+					</div>
 				</div>
+			</div>
+			<form id="add" method="post" action="addProduct">
+			<div class="panel-body">
+				<div class="bd-example">
+					
+						<div class="form-group row">
+							<label for="add_pname" class="col-sm-2 col-form-label">Product
+								Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="add_pname"
+									name="pname" placeholder="Product Name">
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="add_pdesc" class="col-sm-2 col-form-label">Product
+								Description</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="add_pdesc"
+									name="pdesc" placeholder="Product Description">
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="add_relatedproc" class="col-sm-2 col-form-label">Related
+								Products</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="add_relatedproc"
+									name="relatedproc" placeholder="Related Products">
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+
+					
+				</div>
+			</div>
+			<div id="add_submit" class="panel-footer">
+				<button type="submit" class="btn btn-primary btn-md">Add
+					Product</button>
+			</div>
 			</form>
 		</div>
-
-		<div class="headercontentblock0"></div>
-
-		<div class="spacer2"></div>
 	</div>
-
 
 </body>
 </html>

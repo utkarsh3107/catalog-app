@@ -8,15 +8,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-<link href="${pageContext.request.contextPath}/resources/css/OM.css"
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
 	rel="stylesheet" />
 
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" />
-
+	
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery.tmpl.js"></script>
+<style>
+
+.display-form {
+	width: 900px;
+	margin: 50px auto;
+}
+
+.error {
+	display: none;
+}
+
+.error_show {
+	color: red;
+}
+
+</style>
 <script>
 	$(document).ready(function() {
 
@@ -73,105 +95,78 @@
 		});
 	});
 </script>
-<style>
-.homeButton {
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 3px;
-	border: none;
-	background-image: -moz-linear-gradient(top, #0ba4e0, #067ab4, #064a84);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0ba4e0),
-		color-stop(.5, #067ab4), color-stop(1, #064a84));
-	background-image: -ms-linear-gradient(top, #0ba4e0 0, #067ab4 50%, #064a84 100%);
-	-webkit-box-shadow: 1px 2px 4px #333;
-	-moz-box-shadow: 1px 2px 4px #333;
-	box-shadow: 1px 2px 4px #333;
-	background: blue;
-	text-align: center;
-	color: #fff;
-	text-shadow: 0 -1px 1px #c0c0c0;
-	cursor: pointer;
-	font-weight: 100;
-	text-decoration: none
-	
-}
-</style>
-
 </head>
 <body>
-	<div class="container">
-		<div class="orangeText boldText padding10">Update Product: Product
-			Management</div>
-		<div class="headerBarblock">
-			<div class="floatLeft paddingLeft10">Added Items</div>
-			<div class="floatRight">
-				<form method="get" action="/catalog-app/reloadHome">
-					<button type="submit" class="homeButton">Home Page</button>
-				</form>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="headercontentblock1">		
-			<form:form id="update" method="POST" action="/catalog-app/updateProduct">
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20  blueText">
-						<label class="selectWidth70" for="productId">Product Id</label>
-					</div>
-					<div class="floatLeft selectWidth30">
-						<form:hidden path="productId" id="productId" name="productId" cssClass="valid"/>
-						<label id="newId"></label>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20  blueText">
-						<label class="selectWidth70" for="update_productName">Product Name</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<form:input path="productName" id="update_productName" name="productName" cssClass="valid"/> <span
-							class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20  blueText">
-						<label class="selectWidth70" for="update_productDesc">Product
-							Description</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<form:input path="productDesc"  id="update_productDesc" name="productDesc" cssClass="valid"/> <span
-							class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="alignCenter padding15">
-					<div class="floatLeft selectWidth20 blueText">
-						<label class="selectWidth70" for="update_relatedProd">Related
-							Products</label>
-					</div>
-					<div class="floatLeft selectWidth15">
-						<form:input path="relatedProd"  id="update_relatedProd" name="relatedProd" cssClass="valid"/>
-						<span class="floatLeft error">This field is required</span>
-					</div>
-					<div class="clear"></div>
-				</div>
 
-				<div class="clear"></div>
-				<div class="omblueLine"></div>
-				<div class="container1">
-					<div class="spacer2"></div>
-					<div id="update_submit" class="floatLeft selectWidth15">
-						<button type="submit" class="blueButton">Update Product</button>			
+	<div class="display-form">
+		<h4 class="text-left font-weight-bold">Hello ${result}</h4>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="text-left font-weight-bold">Update Product:
+							Product Management</h3>
 					</div>
-					<div class="clear"></div>
+					<div class="col-md-6">
+						<form class="pull-right" action="/catalog-app/reloadHome"
+							method="get">
+							<input type="submit" class="btn btn-default" value="Home Page"></input>
+						</form>
+					</div>
+				</div>
+			</div>
+			<form:form id="update" method="POST" action="/catalog-app/updateProduct">
+			<div class="panel-body">
+				<div class="bd-example">
+					
+						<div class="form-group row">
+							<label for="productId" class="col-sm-2 col-form-label">Product
+								Id</label>
+							<div class="col-sm-10">
+								<form:hidden path="productId" id="productId" name="productId" cssClass="valid"/>
+								<label id="newId" class="col-sm-8 col-form-label"></label>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="update_productName" class="col-sm-2 col-form-label">Product
+								Name</label>
+							<div class="col-sm-10">
+								<form:input path="productName" id="update_productName" name="productName" cssClass="valid form-control"/>
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="update_productDesc" class="col-sm-2 col-form-label">Product
+								Description</label>
+							<div class="col-sm-10">
+								<form:input path="productDesc"  id="update_productDesc" name="productDesc" cssClass="valid form-control"/>
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="update_relatedProd" class="col-sm-2 col-form-label">Related
+								Products</label>
+							<div class="col-sm-10">
+								<form:input path="relatedProd" id="update_relatedProd" name="relatedProd" cssClass="valid form-control"/>
+								<div>
+									<span class="error">This field is required</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="update_submit" class="panel-footer">
+					<button type="submit" class="btn btn-primary btn-md">Update Product</button>
 				</div>
 			</form:form>
+			</div>
+		
 		</div>
-
-		<div class="headercontentblock0"></div>
-
-		<div class="spacer2"></div>
-	</div>
 
 <%-- 	<form:form method="POST" action="/catalog-app/updateProduct">
 		<table>
